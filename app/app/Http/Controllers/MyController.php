@@ -10,39 +10,23 @@ class MyController extends Controller
     public function index()
     {
         $people = People::select("*")->get();
-        return view('people.index',['people'=>$people]);
-    }
-    public function create()
-    {
-        return view('people.create');
+        return view('index',['people'=>$people]);
     }
     public function read($id)
     {
-        $row = People::find($id);
-
-        if (!$row) {
-            return response()->json(['message' => 'Row not found'], 404);
-        }
-
-        return view('people.show', ['row' => $row]);
+        $people = People::where("id", $id)->get();
+        return view('read',['people'=>$people]);
     }    
-    public function update(Request $request, People $people)
+    public function create()
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-        ]);
-    
-        $people->update($request->all());
-    
-        return redirect()->route('users.index')
-                        ->with('success','Person updated successfully');
+        return view('create');
     }
-    public function delete(People $people)
+    public function update()
     {
-        $people->delete();
-    
-        return redirect()->route('people.index')
-                        ->with('success','Person deleted successfully');
+        return view('update');
+    }
+    public function delete()
+    {
+        return view('delete');
     }
 }
