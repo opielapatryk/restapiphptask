@@ -23,6 +23,7 @@
         <td>{{ $person->city }}</td>
         <td>{{ $person->country }}</td>
         <td>{{ $person->email }}</td>
+        <td><a href = 'edit/{{ $person->id }}'>Edit</a></td>
         </tr>
         @endforeach
     </table>

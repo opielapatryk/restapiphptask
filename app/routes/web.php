@@ -5,8 +5,8 @@ use App\Http\Controllers\MyController;
 
 
 Route::get('/', [MyController::class, 'index']);
-Route::get('/create', [MyController::class, 'create']);
+Route::post('/create', [MyController::class, 'create']);
 Route::get('/read/{id}', [MyController::class, 'read']);
-Route::get('/update', [MyController::class, 'update']);
-Route::get('/delete', [MyController::class, 'delete']);
-
+Route::get('/edit/{id}','MyController@show');
+Route::post('/edit/{id}','MyController@edit');
+Route::get('/destroy/{id}', [MyController::class, 'destroy']);
