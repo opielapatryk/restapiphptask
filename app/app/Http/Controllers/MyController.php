@@ -20,16 +20,7 @@ class MyController extends Controller
         return view('read',['people'=>$people]);
     }    
   
-    public function destroy($id){
-
-        try {
-            People::find($id)->delete();
-            $data='user deleted';   
-        } catch (\Throwable $th) {
-            $data='user not found';
-        }
-        return $data;
-    }
+   
     public function create(Request $request){
         $incomingFields = $request->validate([
             'name' => ['required'],
@@ -65,4 +56,18 @@ class MyController extends Controller
         $people = People::where("id", $id)->get();
         return view('update',['people'=>$people]);
      }
+    //  public function destroy($id){
+
+    //     try {
+    //         People::find($id)->delete();
+    //         $data='user deleted';   
+    //     } catch (\Throwable $th) {
+    //         $data='user not found';
+    //     }
+    //     return $data;
+    // }
+    public function delete(People $id){
+       $id->delete();
+       return redirect('/');
+    }
 }
