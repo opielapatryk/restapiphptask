@@ -44,16 +44,22 @@ class MyController extends Controller
         $incomingFields['password'] = bcrypt($incomingFields['password']);
         People::create($incomingFields);
 
-        return 'Person created successfully!';
-    }
-    //ponizej update  
-    public function edit(Request $request, $id)
+        return redirect('/');
+    } 
+    public function edit(Request $request, People $id)
     {
-        $name = $request->input('name');
-        DB::table('people')->where('id',$id)->updateOrInsert(['name' => $name]);
-        //kombinuj z linijka wyzej... poczytaj cos temat query buildera w dokumentacji
-        echo "Record updated successfully.<br/>";
-        echo '<a href = "/read/{id}">Click Here</a> to go back.';
+        $incomingFields = $request->validate([
+            'name' => ['required'],
+            'phone' => ['required'],
+            'street' => ['required'],
+            'city' => ['required'],
+            'country' => ['required'],
+            'email' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        $id->update($incomingFields);
+        return redirect(('/'));
     }
     public function show($id) {
         $people = People::where("id", $id)->get();

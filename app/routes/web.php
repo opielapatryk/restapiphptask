@@ -11,6 +11,5 @@ Route::get('/create', function(){
 Route::post('/create', [MyController::class, 'create']);
 Route::get('/read/{id}', [MyController::class, 'read']);
 Route::get('/destroy/{id}', [MyController::class, 'destroy']);
-//ponizej update
 Route::get('/edit/{id}','MyController@show');
-Route::post('/edit/{id}','MyController@edit');
+Route::put('/edit/{id}','MyController@edit');
