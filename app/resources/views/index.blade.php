@@ -13,6 +13,7 @@
         <td>city</td>
         <td>country</td>
         <td>email</td>
+        <td>Edit</td>
     </tr>
     @foreach ($people as $person)
         <tr>

@@ -1,34 +1,23 @@
-<h4 class="card-title">Add new Person</h4>
-            <p class="card-description">Enter person data</p>
-        <form action="" method="post">
-            {{ csrf_field() }}
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="John Cena">
-                      </div>
-                      <div class="form-group">
-                        <label for="phone">phone</label>
-                        <input type="text" class="form-control" id="phone" placeholder="123234123">
-                      </div>
-                      <div class="form-group">
-                        <label for="street">street</label>
-                        <input type="text" class="form-control" id="street" placeholder="St. Julians">
-                      </div>
-                      <div class="form-group">
-                        <label for="city">city</label>
-                        <input type="text" class="form-control" id="city" placeholder="New York">
-                      </div>
-                      <div class="form-group">
-                        <label for="country">country</label>
-                        <input type="country" class="form-control" id="country" placeholder="Poland">
-                      </div>
-                      <div class="form-group">
-                        <label for="email">email</label>
-                        <input type="email" class="form-control" id="email" placeholder="johncena@gmail.com">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Submit</button>
-                    </div>
-        </div>
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <h2>Create person</h2>
+    <form method="POST" action="/create">
+      @csrf
+      <input type="text" name="name" placeholder="name">
+      <input type="text" name="phone" placeholder="phone">
+      <input type="text" name="street" placeholder="street">
+      <input type="text" name="city" placeholder="city">
+      <input type="text" name="country" placeholder="country">
+      <input type="email" name="email" placeholder="email">
+      <input type="password" name="password" placeholder="password">
+      <button>Create</button>
+    <form>
+</body>
+</html>

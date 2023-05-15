@@ -19,6 +19,34 @@ class MyController extends Controller
         $people = People::where("id", $id)->get();
         return view('read',['people'=>$people]);
     }    
+  
+    public function destroy($id){
+
+        try {
+            People::find($id)->delete();
+            $data='user deleted';   
+        } catch (\Throwable $th) {
+            $data='user not found';
+        }
+        return $data;
+    }
+    public function create(Request $request){
+        $incomingFields = $request->validate([
+            'name' => ['required'],
+            'phone' => ['required'],
+            'street' => ['required'],
+            'city' => ['required'],
+            'country' => ['required'],
+            'email' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        $incomingFields['password'] = bcrypt($incomingFields['password']);
+        People::create($incomingFields);
+
+        return 'Person created successfully!';
+    }
+    //ponizej update  
     public function edit(Request $request, $id)
     {
         $name = $request->input('name');
@@ -31,28 +59,4 @@ class MyController extends Controller
         $people = People::where("id", $id)->get();
         return view('update',['people'=>$people]);
      }
-
-    public function create(Request $req)
-    {
-        // $person = new People;
-        // $person->name = $req->name;
-        // $person->phone = $req->phone;
-        // $person->street = $req->street;
-        // $person->city = $req->city;
-        // $person->country = $req->country;
-        // $person->email = $req->email;
-        // $person->save();
-        
-        return view('create');
-    }
-    public function destroy($id){
-
-        try {
-            People::find($id)->delete();
-            $data='user deleted';   
-        } catch (\Throwable $th) {
-            $data='user not found';
-        }
-        return $data;
-    }
 }
