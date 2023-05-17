@@ -15,6 +15,8 @@
         <form>
             <input
     type="search"
+    autofocus="autofocus"
+    id="searchInput"
     placeholder="Write person name"
     name="search"
     value="{{ request('search') }}"
@@ -54,5 +56,34 @@
         <td>User not found</td>
         @endforelse
     </table>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById('searchInput');
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchParam = urlParams.get('search');
+            searchInput.value = searchParam;
+            const end = searchInput.value.length;
+            
+    
+            searchInput.addEventListener('input', function() {
+                const searchValue = searchInput.value;
+                const newUrlParams = new URLSearchParams(window.location.search);
+                newUrlParams.set('search', searchValue);
+                const newUrl = `${window.location.pathname}?${newUrlParams.toString()}`;
+                window.history.replaceState({}, '', newUrl);
+    
+                // Perform the search here
+                window.location.href = `/opiela/52205?search=${encodeURIComponent(searchValue)}`;
+                
+                setTimeout(function(){ 
+                    searchInput.setSelectionRange(end, end);
+                    searchInput.focus();
+                }, 0);
+                });
+            });
+            
+    </script>
+    
+    
 </body>
 </html>

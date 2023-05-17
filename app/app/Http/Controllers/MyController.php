@@ -19,8 +19,6 @@ class MyController extends Controller
         $people = People::where("id", $id)->get();
         return view('read',['people'=>$people]);
     }    
-  
-   
     public function create(Request $request){
         $incomingFields = $request->validate([
             'name' => ['required'],
